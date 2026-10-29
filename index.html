@@ -593,6 +593,36 @@ function submitOrder() {
 }
 
 function closeSuccess() { document.getElementById('successModal').classList.remove('show'); }
+</script> <!-- Anika Herbal: WhatsApp + Call buttons -->
+<a href="https://wa.me/918874478248?text=Namaste%2C%20mujhe%20Night%20Fall%20Control%20Capsule%20ke%20baare%20mein%20jaanna%20hai."
+   target="_blank" rel="noopener"
+   style="position:fixed;right:16px;bottom:90px;background:#25D366;color:#fff;padding:12px 16px;border-radius:24px;text-decoration:none;font-weight:bold;font-size:14px;z-index:400;box-shadow:0 2px 8px rgba(0,0,0,.3)">
+  💬 WhatsApp
+</a>
+
+<script src="https://storage.googleapis.com/mychatbot-widget-assets/v1/calls.js"></script>
+<script>
+  MyChatBotCalls.init({ agent_id: "agent_6601m627t8z4ex890s59bdn01fab" });
+</script>
+<button id="callBtn"
+  style="position:fixed;left:16px;bottom:90px;background:#2E7D32;color:#fff;border:none;padding:12px 16px;border-radius:24px;font-weight:bold;font-size:14px;z-index:400;box-shadow:0 2px 8px rgba(0,0,0,.3)">
+  📞 Baat karein
+</button>
+<script>
+  var btn = document.getElementById("callBtn");
+  btn.onclick = function () {
+    if (MyChatBotCalls.getStatus() === "idle") {
+      MyChatBotCalls.start({ caller_id: MyChatBotCalls.defaultCallerId() });
+    } else {
+      MyChatBotCalls.stop();
+    }
+  };
+  MyChatBotCalls.on("statusChange", function (d) {
+    var t = { idle: "📞 Baat karein", connecting: "Judh raha hai...", connected: "❌ Call band karein", disconnecting: "Band ho raha hai..." };
+    btn.textContent = t[d.status] || "📞 Baat karein";
+    btn.style.background = d.status === "connected" ? "#C62828" : "#2E7D32";
+  });
+  MyChatBotCalls.on("error", function () { alert("Call nahi lag paayi. Dobara try karein."); });
 </script>
 </body>
 </html>
